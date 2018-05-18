@@ -1,0 +1,31 @@
+{
+  "name": "ds-vis-parcel",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server/index.js",
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/express": "^4.11.1",
+    "@types/node": "^10.0.9",
+    "@types/node-sass": "^3.10.32",
+    "concurrently": "^3.5.1",
+    "node-sass": "^4.9.0",
+    "nodemon": "^1.17.4",
+    "typescript": "^2.8.3"
+  },
+  "dependencies": {
+    "express": "^4.16.3"
+  },
+  "scripts": {
+    "build": "npm run build:client && npm run build:server",
+    "build:client": "parcel build client/views/*.html -d build --public-url public/ --no-minify",
+    "build:server": "tsc --project server",
+    "dev": "concurrently -r -k \"npm run watch\" \"npm run dev:server\"",
+    "dev:server": "nodemon -w server",
+    "watch": "concurrently -k \"npm run watch:client\" \"npm run watch:server\"",
+    "watch:client": "parcel watch client/views/*.html -d build --public-url public/",
+    "watch:server": "tsc -w --project server",
+    "serve:client": "parcel serve client/views/*.html -d build --public-url public/ --open --hmr-port 8080 --no-minify"
+  }
+}
