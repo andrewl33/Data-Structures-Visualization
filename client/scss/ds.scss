@@ -1,5 +1,8 @@
 @import './_base';
 
+$dark-grey:  #292D3E;
+$sub-header-color: rgb(54, 67, 128);
+
 body, html {
   color:white;
   height: 100%;
@@ -20,7 +23,7 @@ a {
 
 .container {
   display: grid;
-  grid-template-columns: 33% auto;
+  grid-template-columns: 30% auto;
   grid-template-rows: [row1-start] 60px [row1-end] auto [last];
   height: 100%;
 }
@@ -40,6 +43,9 @@ header {
   grid-row-start: row1-start;
   grid-row-end: row1-end;
   
+  a {
+    padding: 30px;
+  }
   //background-color: rgb(65, 69, 83);
 }
 
@@ -47,15 +53,25 @@ header, .main-nav {
   display: flex;
   align-items: center;
 
-  background-color: #292D3E;
+  background-color: $dark-grey;
+}
+
+h3 {
+  background-color: $sub-header-color;
+  margin: 0;
+  padding: 10px;
 }
 
 .left-bar {
+  display: grid;
+  grid-template-rows: [left-start] 30% [left-output] 65% [left-down] 5% [left-end];
   grid-column-start: 1;
   grid-column-end: 2;
   grid-row-start: row1-end;
   grid-row-end: last;
   background-color: rgb(164, 168, 182);
+
+
 }
 
 .right-section {
@@ -64,4 +80,21 @@ header, .main-nav {
   grid-row-start: row1-end;
   grid-row-end: last;
   background-color: rgb(187, 191, 207);
+}
+
+.form {
+  grid-row-start: left-start;
+  grid-row-end: left-output;
+}
+
+.output {
+  overflow: auto; // does box scroll
+  grid-row-start: left-output;
+  grid-row-end: left-down;
+}
+
+.download {
+  grid-row-start: left-down;
+  grid-row-end: left-end;
+  background-color: $sub-header-color;
 }

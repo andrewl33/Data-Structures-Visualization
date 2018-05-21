@@ -1,50 +1,54 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Data Structures Visualization</title>
-  <link rel="stylesheet" type="text/css" href="../scss/ds.scss">
-  <script type="text/javascript" src="../ts/stack.ts"></script>
-</head>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Data Structures Visualization</title>
+    <link rel="stylesheet" type="text/css" href="../scss/ds.scss">
+    <script type="text/javascript" src="../ts/StackApp.ts"></script>
+  </head>
 
-<body>
-  <div class="container">
-    <header><h1>Data Structure Visualizer: Stack</h1></header>
-    <nav class="main-nav">
-      <a href="/"><h2>Home</h2></a>
-      <a href="/stack"><h2>Stack</h2></a>
-      <a href="/binary-tree"><h2>Binary Tree</h2></a>
-      <a href="/avl-tree"><h2>AVL Tree</h2></a>
-    </nav>
+  <body>
+    <div class="container">
+      <header><h1>Data Structure Visualizer: Stack</h1></header>
+      <nav class="main-nav">
+        <a href="/"><h2>Home</h2></a>
+        <a href="/stack"><h2>Stack</h2></a>
+        <a href="/binary-tree"><h2>Binary Tree</h2></a>
+        <a href="/avl-tree"><h2>AVL Tree</h2></a>
+      </nav>
 
-    <aside class="left-bar">
+      <aside class="left-bar">
 
-      <div class="form">
-        <h2>Stack Methods</h2>
-        <form class="enter-form" id="enter-form">
+        <div class="form">
+          <h3>Stack Methods</h3>
+          <form class="enter-form" id="enter-form">
 
-        </form>
-      </div>
+          </form>
+        </div>
 
-      <div class="output aside-wrapper">
-        <!--insert values here-->
-        input list
-      </div>
-      <div class="aside-wrapper">
-        download items here
-      </div>
+        <div class="output aside-wrapper">
+          <h3>Previous Operations</h3>
+          <div class="scroll-box">
+            <ul id="output-list">
 
-    </aside>
+            </ul>
+          </div>
+        </div>
+        <div class="download aside-wrapper">
+          Download File: <a href="/downloads/stack">Stack.ts</a>
+        </div>
+
+      </aside>
 
 
-    <section class="right-section">
-      <canvas id="draw"></canvas>
-      canvas above but memes
-    </section>
+      <section class="right-section">
+        <h3>Implementation</h3>
+        <canvas id="draw"></canvas>
+      </section>
 
-  </div>
-</body>
+    </div>
+  </body>
 
 </html>

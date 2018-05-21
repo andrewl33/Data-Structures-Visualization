@@ -10,6 +10,8 @@ app.set('port', PORT);
 
 // serve static files
 app.use('/public', express.static(path.join(__dirname, '..', 'build')));
+app.use('/files', express.static(path.join(__dirname, '..', 'adt-files')));
+
 
 // handle routes
 app.get('/', (req, res) => {
@@ -27,6 +29,15 @@ app.get('/binary-tree', (req, res) => {
 app.get('/avl-tree', (req, res) => {
   res.sendFile(path.join(__dirname, '..', 'build', 'avl-tree.html'));
 });
+
+// downloads
+app.get('/downloads/stack', (req, res) => {
+  const file = path.join(__dirname, '..', 'client', 'ts', 'Stack.ts');
+  res.download(file);
+})
+
+
+// error checking
 
 app.use(function(req, res) {
   res.type('text/plain');
