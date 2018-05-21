@@ -13,19 +13,19 @@ app.use('/public', express.static(path.join(__dirname, '..', 'build')));
 
 // handle routes
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'build', '/front-page.html'));
+  res.sendFile(path.join(__dirname, '..', 'build', 'front-page.html'));
 });
 
-app.get('/ds/linked-list', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'build', '/linked-list.html'));
+app.get('/stack', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'build', 'stack.html'));
 });
 
-app.get('/ds/binary-tree', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'build', '/binary-tree.html'));
+app.get('/binary-tree', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'build', 'binary-tree.html'));
 });
 
-app.get('/ds/avl-tree', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'build', '/avl-tree.html'));
+app.get('/avl-tree', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'build', 'avl-tree.html'));
 });
 
 app.use(function(req, res) {

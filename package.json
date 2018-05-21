@@ -21,9 +21,9 @@
     "build": "npm run build:client && npm run build:server",
     "build:client": "parcel build client/views/*.html -d build --public-url public/ --no-minify",
     "build:server": "tsc --project server",
-    "dev": "concurrently -r -k \"npm run watch\" \"npm run dev:server\"",
+    "dev": "concurrently -r --kill-others \"npm run watch\" \"npm run dev:server\"",
     "dev:server": "nodemon -w server",
-    "watch": "concurrently -k \"npm run watch:client\" \"npm run watch:server\"",
+    "watch": "concurrently -k \"npm run watch:server\" \"npm run watch:client\"",
     "watch:client": "parcel watch client/views/*.html -d build --public-url public/",
     "watch:server": "tsc -w --project server",
     "serve:client": "parcel serve client/views/*.html -d build --public-url public/ --open --hmr-port 8080 --no-minify"
