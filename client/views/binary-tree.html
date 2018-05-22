@@ -1,48 +1,59 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Data Structures Visualization</title>
-  <link rel="stylesheet" type="text/css" href="../scss/ds.scss">
-  <script type="text/javascript" src="../ts/ds.ts"></script>
-</head>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Data Structures Visualization</title>
+    <link rel="stylesheet" type="text/css" href="../scss/ds.scss">
+    <script type="text/javascript" src="../ts/BSTApp.ts"></script>
+  </head>
 
-<body>
+  <body>
+    <div class="container">
+      <header><h1>Data Structure Visualizer: Binary Tree</h1></header>
+      <nav class="main-nav">
+        <a href="/"><h2>Home</h2></a>
+        <a href="/stack"><h2>Stack</h2></a>
+        <a href="/binary-tree" id="nav-active"><h2>Binary Tree</h2></a>
+        <a href="/avl-tree"><h2>AVL Tree</h2></a>
+      </nav>
 
-  <header>header</header>
-  <nav class="main-nav">
-    <a href="/">Home</a>
-    <a href="/ds/linked-list">Linked List</a>
-    <a href="/ds/binary-tree">Binary Tree</a>
-    <a href="/ds/avl-tree">AVL Tree</a>
-  </nav>
-  <section class="main-container">
-    <aside class="left-bar">
+      <aside class="left-bar">
+        <div class="left-header">
+            <h3>Binary Tree Methods</h3>
+        </div>
+        <div class="form">
+          
+          <form class="enter-form" id="enter-form">
 
-      <div class="aside-wrapper">
-        <form class="enter-form">
-          form goes here
-        </form>
-      </div>
-  
-      <div class="output aside-wrapper">
-        <!--insert values here-->
-        input list
-      </div>
-      <div class="aside-wrapper">
-        download items here
-      </div>
-  
-    </aside>
-  
-  
-    <section class="right-section">
-      <canvas id="canvas"></canvas>
-      canvas above
-    </section>
-  </section>
-</body>
+          </form>
+        </div>
+        <div class="left-header">
+            <h3>Previous Operations</h3>
+        </div>
+        <div class="output aside-wrapper">
+
+          <ul id="output-list">
+
+          </ul>
+
+        </div>
+        <div class="download aside-wrapper">
+          <h3>Download File: <a href="/files/binary-tree">Binary-Tree.ts</a></h3>
+        </div>
+
+      </aside>
+
+
+      <section class="right-section">
+        <div class="right-header">
+            <h3>Implementation</h3>
+        </div>
+        <canvas id="draw"></canvas>
+      </section>
+
+    </div>
+  </body>
 
 </html>

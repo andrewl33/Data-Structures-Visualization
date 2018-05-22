@@ -13,7 +13,7 @@ export default abstract class DrawCanvas {
     this.draw();
   }
 
-  public appendPreviousOuputs(name: string, value: number): void {
+  public appendPreviousOutputs(name: string, value: number): void {
     const newli = document.createElement('li');
     const newTextNode = document.createTextNode(name + ": " + value);
     newli.appendChild(newTextNode);
@@ -21,7 +21,7 @@ export default abstract class DrawCanvas {
     this.prevOpDOM.appendChild(newli);
   }
 
-  public removeAllOuputs(): void {
+  public removeAllOutputs(): void {
     while(this.prevOpDOM.firstChild) {
       this.prevOpDOM.removeChild(this.prevOpDOM.firstChild);
     }

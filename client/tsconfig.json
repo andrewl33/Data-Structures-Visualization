@@ -5,7 +5,7 @@
     "removeComments": true,
     "preserveConstEnums": true,
     "sourceMap": false,
-    "lib": ["es6", "DOM"]
+    "lib": ["es6", "dom"]
   },
   "include": [
     "ts/*"

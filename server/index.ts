@@ -10,7 +10,7 @@ app.set('port', PORT);
 
 // serve static files
 app.use('/public', express.static(path.join(__dirname, '..', 'build')));
-app.use('/files', express.static(path.join(__dirname, '..', 'adt-files')));
+// app.use('/files', express.static(path.join(__dirname, '..', 'client', 'ts', 'ds', 'adt-files')));
 
 
 // handle routes
@@ -31,11 +31,15 @@ app.get('/avl-tree', (req, res) => {
 });
 
 // downloads
-app.get('/downloads/stack', (req, res) => {
-  const file = path.join(__dirname, '..', 'client', 'ts', 'Stack.ts');
+app.get('/files/stack', (req, res) => {
+  const file = path.join(__dirname, '..', 'client', 'ts', 'ds', 'Stack.ts');
   res.download(file);
 })
 
+app.get('/files/binary-tree', (req, res) => {
+  const file = path.join(__dirname, '..', 'client', 'ts', 'ds', 'BinarySearchTree.ts');
+  res.download(file);
+})
 
 // error checking
 

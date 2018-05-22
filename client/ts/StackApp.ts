@@ -1,6 +1,6 @@
 import  DrawCanvas  from './DrawCanvas';
 import FormInput  from './FormInput';
-import Stack from './Stack';
+import Stack from './ds/Stack';
 
 class StackDraw extends DrawCanvas {
   private stack: Stack;
@@ -96,19 +96,19 @@ class StackDraw extends DrawCanvas {
   public stackPush(data: number): void {
     this.stack.push(data);
     this.constructStackList();
-    this.appendPreviousOuputs('push', data);
+    this.appendPreviousOutputs('push', data);
     this.draw();
   }
 
   public stackPop(): void {
-    this.appendPreviousOuputs('pop', this.stack.top());
+    this.appendPreviousOutputs('pop', this.stack.top());
     this.stack.pop();
     this.constructStackList();
     this.draw();
   }
   public stackClear(): void {
     this.stack.clear();
-    this.removeAllOuputs();
+    this.removeAllOutputs();
     this.constructStackList();
     this.draw();
 
@@ -130,7 +130,7 @@ window.onload = () => {
 
   // fill initially
 
-  for (let i = 0; i < 500; i++) {
+  for (let i = 0; i < 20; i++) {
     stackDraw.stackPush(i);
   }
   

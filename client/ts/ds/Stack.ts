@@ -9,7 +9,6 @@ class SNode {
   }
 }
 
-
 export default class Stack {
   private head: SNode;
   private length: number;
