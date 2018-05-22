@@ -13,12 +13,18 @@ export default abstract class DrawCanvas {
     this.draw();
   }
 
-  public appendPreviousOuputs(name: string, value: number) {
+  public appendPreviousOuputs(name: string, value: number): void {
     const newli = document.createElement('li');
     const newTextNode = document.createTextNode(name + ": " + value);
     newli.appendChild(newTextNode);
 
     this.prevOpDOM.appendChild(newli);
+  }
+
+  public removeAllOuputs(): void {
+    while(this.prevOpDOM.firstChild) {
+      this.prevOpDOM.removeChild(this.prevOpDOM.firstChild);
+    }
   }
 
   public setContainerSize(canvasElem: HTMLCanvasElement): void {
@@ -30,7 +36,7 @@ export default abstract class DrawCanvas {
     (<HTMLElement>canvasElem.parentNode).style.height = (h - 60).toString();
 
     canvasElem.width = w - (w *.3);
-    canvasElem.height = h - 60 - 47; // LOL
+    canvasElem.height = h - 60 - ((h-60)*.05); // LOL
   }
 
   public containerSize(canvasElem: HTMLCanvasElement): {x: number; y: number;} {

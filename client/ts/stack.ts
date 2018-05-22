@@ -1,7 +1,7 @@
 // using numbers only to keep it simple
 class SNode {
   public data: number;
-  public next: Node; 
+  public next: SNode; 
 
   constructor(data) {
     this.data = data;
@@ -45,5 +45,11 @@ export default class Stack {
 
   public size(): number {
     return this.length;
+  }
+
+  public clear(): void {
+    while (!this.isEmpty()) {
+      this.pop();
+    }
   }
 }

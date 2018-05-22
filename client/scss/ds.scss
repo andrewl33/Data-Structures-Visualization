@@ -2,6 +2,7 @@
 
 $dark-grey:  #292D3E;
 $sub-header-color: rgb(54, 67, 128);
+$nav-select: rgb(98, 202, 209);
 
 body, html {
   color:white;
@@ -17,8 +18,12 @@ a {
   }
 
   &:hover {
-    color: rgb(98, 202, 209);
+    color: nav-select;
   }
+}
+
+#nav-active {
+  color: $nav-select;
 }
 
 .container {
@@ -64,17 +69,56 @@ h3 {
 
 .left-bar {
   display: grid;
-  grid-template-rows: [left-start] 30% [left-output] 65% [left-down] 5% [left-end];
+  grid-template-rows: [left-start] 5% [left-method] 20% [left-header-op] 5% [left-op] 65% [left-down] 5% [left-end];
   grid-column-start: 1;
   grid-column-end: 2;
   grid-row-start: row1-end;
   grid-row-end: last;
   background-color: rgb(164, 168, 182);
+  min-width: 0;
+  min-height: 0;
+}
+.left-header, .download, .right-header {
+  background-color: $sub-header-color;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
 
 
+.left-header {
+  &:first-of-type {
+    grid-row-start: left-start;
+    grid-row-end: left-method;
+  }
+
+  &:nth-of-type(2) {
+    grid-row-start: left-header-op;
+    grid-row-end: left-op;
+  }
+}
+
+.download {
+  grid-row-start: left-down;
+  grid-row-end: left-end;
+  background-color: $sub-header-color;
+}
+
+.form {
+  grid-row-start: left-method;
+  grid-row-end: left-header-op;
+}
+
+.output {
+  grid-row-start: left-op;
+  grid-row-end: left-down;
+  overflow-y: scroll; // does box scroll
+  min-height: 0;
 }
 
 .right-section {
+  display: grid;
+  grid-template-rows: 5% auto;
   grid-column-start: 2;
   grid-column-end: 3;
   grid-row-start: row1-end;
@@ -82,19 +126,7 @@ h3 {
   background-color: rgb(187, 191, 207);
 }
 
-.form {
-  grid-row-start: left-start;
-  grid-row-end: left-output;
-}
-
-.output {
-  overflow: auto; // does box scroll
-  grid-row-start: left-output;
-  grid-row-end: left-down;
-}
-
-.download {
-  grid-row-start: left-down;
-  grid-row-end: left-end;
-  background-color: $sub-header-color;
+.right-header {
+  grid-row-start: 1;
+  grid-row-end: 2;
 }

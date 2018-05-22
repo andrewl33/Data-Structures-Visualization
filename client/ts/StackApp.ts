@@ -11,12 +11,14 @@ class StackDraw extends DrawCanvas {
     this.stack = new Stack();
     this.stackPush = this.stackPush.bind(this);
     this.stackPop = this.stackPop.bind(this);
+    this.stackClear = this.stackClear.bind(this);
   }
 
   
   private drawNode(ctx: CanvasRenderingContext2D, data: number, x: number, y: number, r: number): void {
     // draw circle
     ctx.beginPath();
+    ctx.lineWidth = 10;
     ctx.strokeStyle = 'white';
     ctx.arc(x, y, r, 0*Math.PI, 2*Math.PI);
     ctx.stroke();
@@ -35,7 +37,8 @@ class StackDraw extends DrawCanvas {
   // EVENTUALLY DRAW ARROW
   private drawLine(ctx: CanvasRenderingContext2D, x: number, y: number, r: number): void {
     ctx.beginPath();
-    ctx.strokeStyle = 'red';
+    ctx.strokeStyle = 'black';
+    ctx.lineWidth = 10;
     ctx.moveTo(x, y+r);
     ctx.lineTo(x, y+r*3);
     ctx.stroke();
@@ -103,6 +106,13 @@ class StackDraw extends DrawCanvas {
     this.constructStackList();
     this.draw();
   }
+  public stackClear(): void {
+    this.stack.clear();
+    this.removeAllOuputs();
+    this.constructStackList();
+    this.draw();
+
+  }
 }
 
 
@@ -110,8 +120,18 @@ window.onload = () => {
   const stackDraw = new StackDraw();
   const pushInput = new FormInput('push', stackDraw.stackPush, 'enter-form');
   const popInput = new FormInput('pop', stackDraw.stackPop, 'enter-form');
+  const clearInput  = new FormInput('clear', stackDraw.stackClear, 'enter-form');
   stackDraw.bindResizeListener();
   stackDraw.draw();
   pushInput.renderNumIn();
   popInput.renderBtn();
+  clearInput.renderBtn();
+
+
+  // fill initially
+
+  for (let i = 0; i < 500; i++) {
+    stackDraw.stackPush(i);
+  }
+  
 }
