@@ -1,4 +1,4 @@
-class BSTNode {
+export class BSTNode {
   public data: number;
   public left: BSTNode;
   public right: BSTNode;
@@ -10,8 +10,8 @@ class BSTNode {
   }
 }
 
-export default class BinarySearchTree {
-  private root: BSTNode;
+export class BinarySearchTree {
+  public root: BSTNode;
   private BSTsize: number;
 
   constructor() {
@@ -110,5 +110,29 @@ export default class BinarySearchTree {
   public clear(): void {
     this.BSTsize = 0;
     this.root = null;
+  }
+
+  private _h(n: BSTNode): number {
+    let size = 0;
+    let left = 0;
+    let right = 0;
+
+    if (n.left === null && n.right === null) {
+      return size;
+    }
+    if (n.left) {
+      left = this._h(n.left);
+    }
+    if (n.right) {
+      right = this._h(n.right);
+    }
+
+    size = left > right ? left : right;
+
+    return size+1;
+  }
+
+  public height(): number {
+    return this._h(this.root);
   }
 }
