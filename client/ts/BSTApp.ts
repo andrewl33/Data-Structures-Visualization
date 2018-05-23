@@ -8,7 +8,7 @@ class BSTDraw extends DrawCanvas {
   private topOffset: number = 50;
   private c: HTMLCanvasElement;
   private ctx: CanvasRenderingContext2D;
-  private heightSpread: number = 4;
+  private heightSpread: number = 2.5;
 
   constructor() {
     super();
@@ -78,49 +78,44 @@ class BSTDraw extends DrawCanvas {
     return [xLineStart, yLineStart, xLineEnd, yLineEnd, xNodePt, yNodePt];
   }
 
-  private _heightOfInnerTree(cur: BSTNode, isLeft: boolean) {
-    // if (isLeft && cur.left !== null && cur.left.right !== null) {
-    //   return (cur.left.right.height + 1) * this.heightSpread;
-    // } else if (cur.right !== null && cur.right.left !== null) {
-    //   return (cur.right.left.height + 1) * this.heightSpread;
-    // }
-
-    // return 1;
-
+  private _widthOfInnerTree(cur: BSTNode, isLeft: boolean) {
+    let childTreeInnerWidth = 0;
+    console.log(`${cur.data}: r:${cur.rightWidth} l:${cur.leftWidth}`)
     if (isLeft) {
-      if (cur.rightWidth > 0) {
-        return cur.rightWidth * this.heightSpread;
+      if (cur.left.right) {
+        childTreeInnerWidth = cur.left.right.rightWidth + cur.left.right.leftWidth + cur.left.right.height;
       }
+      return (cur.left.rightWidth + 1) * this.heightSpread + childTreeInnerWidth * this.heightSpread * 1.3;
     } else {
-      if (cur.leftWidth > 0) {
-        return cur.leftWidth * this.heightSpread;
+      if (cur.right.left) {
+        childTreeInnerWidth = cur.right.left.leftWidth + cur.right.left.rightWidth + cur.right.left.height;
       }
+      return (cur.right.leftWidth + 1) * this.heightSpread + childTreeInnerWidth * this.heightSpread * 1.3;
     }
-
-    return 1;
   }
 
   private _drawChildNode(cur: BSTNode, curStartX: number, curStartY: number, isLeftSubTree: boolean) {
-    // handle height
-    let hLeft: number =  this._heightOfInnerTree(cur, isLeftSubTree);
-    let hRight: number =  this._heightOfInnerTree(cur, isLeftSubTree);
 
     this.drawNode(cur.data, curStartX, curStartY);
-
+  
     if (cur.left) {
-      // do math
+      let hLeft: number = this._widthOfInnerTree(cur, true);
+      let hRight: number = 1;
+
       let pts: number[] = this._childCoord(curStartX, curStartY, true, hLeft, hRight);
 
       this.drawLine(pts[0], pts[1], pts[2], pts[3]);
-      this._drawChildNode(cur.left, pts[4], pts[5], isLeftSubTree);
+      this._drawChildNode(cur.left, pts[4], pts[5], true);
     }
 
     if (cur.right) {
-      // do math
+      let hLeft: number = 1;
+      let hRight: number = this._widthOfInnerTree(cur, false);
+
       let pts: number[] = this._childCoord(curStartX, curStartY, false, hLeft, hRight);
 
       this.drawLine(pts[0], pts[1], pts[2], pts[3]);
-      this._drawChildNode(cur.right, pts[4], pts[5], isLeftSubTree);
+      this._drawChildNode(cur.right, pts[4], pts[5], false);
     }
   }
 
@@ -138,7 +133,7 @@ class BSTDraw extends DrawCanvas {
       // handle both subtrees
       if (this.bst.root.left) {
         // draw line
-        let height = this._heightOfInnerTree(this.bst.root, true);
+        let height = this._widthOfInnerTree(this.bst.root, true);
         let pts = this._childCoord(dimensions.x / 2, this.topOffset, true, height, 1);
         this.drawLine(pts[0], pts[1], pts[2], pts[3]);
 
@@ -147,7 +142,7 @@ class BSTDraw extends DrawCanvas {
       }
       if (this.bst.root.right) {
         // draw line
-        let height = this._heightOfInnerTree(this.bst.root, false);
+        let height = this._widthOfInnerTree(this.bst.root, false);
         let pts = this._childCoord(dimensions.x / 2, this.topOffset, false, 1, height);
         this.drawLine(pts[0], pts[1], pts[2], pts[3]);
 
@@ -207,7 +202,7 @@ window.onload = () => {
   clearInput.renderBtn();
 
 
-  const list: number[] = [50, 17,76,9,23,54,12,19,72,12,67];
+  const list: number[] = [50,25,61,78,84,56,22,55,66,20,40,81,31,68,87,19,85,76,60,2,45,57,23];
 
   list.forEach((item) => {
     bstDraw.bstAdd(item);

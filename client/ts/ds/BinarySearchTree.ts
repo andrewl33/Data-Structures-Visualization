@@ -22,28 +22,45 @@ export class BinarySearchTree {
     this.BSTsize = 0;
   }
 
-
-  // TODO: SET WIDTH CORRECTLY
   private _setHeight(cur: BSTNode) {
     let height = 0;
-    let leftWidth = 0;
-    let rightWidth = 0;
 
     if (cur.left !== null) {
       height = cur.left.height + 1;
-      leftWidth = cur.leftWidth + 1;
-      rightWidth--;
     } 
     if (cur.right !== null) {
       height = cur.right.height >= height ? cur.right.height + 1 : height;
-      rightWidth += cur.leftWidth + 1;
-      leftWidth--;
-
     }
 
     cur.height = height;
-    cur.leftWidth = cur.leftWidth > leftWidth ? cur.leftWidth : leftWidth;
-    cur.rightWidth = cur.rightWidth > cur.rightWidth ? cur.rightWidth : rightWidth;
+  }
+
+  private _getMaxLeftWidth(cur: BSTNode): number {
+    let left: number = 0;
+    let right: number = 0;
+
+    if (cur.left !== null) {
+      left+= this._getMaxLeftWidth(cur.left) + 1;
+    }
+    if (cur.right !== null) {
+      right+= this._getMaxLeftWidth(cur.right) - 1;
+    }
+
+    return left > right ? left : right;
+  }
+
+  private _getMaxRightWidth(cur: BSTNode): number {
+    let left: number = 0;
+    let right: number = 0;
+
+    if (cur.left !== null) {
+      left+= this._getMaxRightWidth(cur.left) - 1;
+    }
+    if (cur.right !== null) {
+      right+= this._getMaxRightWidth(cur.right) + 1;
+    }
+
+    return left > right ? left : right;
   }
 
   private _add(current: BSTNode, val: number): BSTNode {
@@ -57,6 +74,8 @@ export class BinarySearchTree {
       }
     }
     this._setHeight(current);
+    current.leftWidth = this._getMaxLeftWidth(current);
+    current.rightWidth = this._getMaxRightWidth(current);
     return current;
   }
 
@@ -91,7 +110,11 @@ export class BinarySearchTree {
         current.right = this._removeBSTNode(current.right, val);
       }
     }
+
     this._setHeight(current);
+    current.leftWidth = this._getMaxLeftWidth(current);
+    current.rightWidth = this._getMaxRightWidth(current);
+
     return current;
   }
 
