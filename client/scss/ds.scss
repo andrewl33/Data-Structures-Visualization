@@ -65,7 +65,7 @@ h3 {
 
 .left-bar {
   display: grid;
-  grid-template-rows: [left-start] 5% [left-method] 20% [left-header-op] 5% [left-op] 65% [left-down] 5% [left-end];
+  grid-template-rows: [left-start] 5% [left-method] 15% [left-header-op] 5% [left-op] 70% [left-down] 5% [left-end];
   grid-column-start: 1;
   grid-column-end: 2;
   grid-row-start: row1-end;
@@ -76,9 +76,9 @@ h3 {
 }
 .left-header, .download, .right-header {
   background-color: $sub-header-color;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
+  //display: flex;
+  //justify-content: center;
+  //flex-direction: column;
 }
 
 
@@ -104,6 +104,7 @@ h3 {
   grid-row-start: left-method;
   grid-row-end: left-header-op;
 }
+
 
 .output {
   grid-row-start: left-op;
