@@ -18,7 +18,7 @@ class StackDraw extends DrawCanvas {
   private drawNode(ctx: CanvasRenderingContext2D, data: number, x: number, y: number, r: number): void {
     // draw circle
     ctx.beginPath();
-    ctx.lineWidth = 10;
+    ctx.lineWidth = 7;
     ctx.strokeStyle = 'white';
     ctx.arc(x, y, r, 0*Math.PI, 2*Math.PI);
     ctx.stroke();
@@ -27,7 +27,7 @@ class StackDraw extends DrawCanvas {
     ctx.closePath();
     // draw text
     ctx.fillStyle = "white";
-    ctx.font = 'bold 16px Arial';
+    ctx.font = '14px Arial';
     const width = ctx.measureText(data.toString()).width;
     const height = ctx.measureText("1").width;
     ctx.fillText(data.toString(), x - (width/2), y + (height/2));
@@ -38,7 +38,7 @@ class StackDraw extends DrawCanvas {
   private drawLine(ctx: CanvasRenderingContext2D, x: number, y: number, r: number): void {
     ctx.beginPath();
     ctx.strokeStyle = 'black';
-    ctx.lineWidth = 10;
+    ctx.lineWidth = 7;
     ctx.moveTo(x, y+r);
     ctx.lineTo(x, y+r*3);
     ctx.stroke();
@@ -49,7 +49,7 @@ class StackDraw extends DrawCanvas {
   public draw(): void {
     // constant top
     const topOffset = 50;
-    const radius = 20;
+    const radius = 15;
     const c = <HTMLCanvasElement>document.getElementById('draw');
     const ctx = c.getContext('2d');
     let dimensions;     // resonsive width
@@ -101,7 +101,12 @@ class StackDraw extends DrawCanvas {
   }
 
   public stackPop(): void {
-    this.appendPreviousOutputs('pop', this.stack.top());
+    if (!this.stack.isEmpty()) {
+      this.appendPreviousOutputs('pop', this.stack.top());
+    } else {
+      this.appendPreviousOutputs('pop: failed. nothing in stack', -1);
+    }
+    
     this.stack.pop();
     this.constructStackList();
     this.draw();
@@ -130,7 +135,7 @@ window.onload = () => {
 
   // fill initially
 
-  for (let i = 0; i < 20; i++) {
+  for (let i = 0; i < 21; i++) {
     stackDraw.stackPush(i);
   }
   
