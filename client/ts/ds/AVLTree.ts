@@ -31,17 +31,18 @@ export class AVLTree {
     this.count = 0;
   }
 
-  private _setHeight(cur: AVLNode) {
-    let height = 0;
+  private _setHeight(cur: AVLNode): number {
+    let lh = 0;
+    let rh = 0;
 
     if (cur.left) {
-      height = cur.left.height + 1;
+      lh = this._setHeight(cur.left) + 1;
     } 
     if (cur.right) {
-      height = cur.right.height >= height ? cur.right.height + 1 : height;
+      rh = this._setHeight(cur.right) + 1;
     }
 
-    cur.height = height;
+    return Math.max(lh, rh);
   }
 
   private _getMaxLeftWidth(cur: AVLNode): number {
@@ -84,10 +85,15 @@ export class AVLTree {
     }
     
     // set height
-    this._setHeight(cur);
+    cur.height = this._setHeight(cur);
 
     // rebalance the nodes if need be
-    this._rebalance(cur, val);
+    cur = this._rebalance(cur);
+
+    // set widths
+    cur.leftWidth = this._getMaxLeftWidth(cur);
+    cur.rightWidth = this._getMaxRightWidth(cur);
+
 
     return cur;
   }
@@ -126,68 +132,56 @@ export class AVLTree {
       }
     }
 
-    this._setHeight(current);
-    this._rebalance(current);
+    current.height = this._setHeight(current);
+    // this._rebalance(current, val);
     current.leftWidth = this._getMaxLeftWidth(current);
     current.rightWidth = this._getMaxRightWidth(current);
 
     return current;
   }
 
-  private _rebalance(cur: AVLNode, val: number) {
+  private _rebalance(cur: AVLNode): AVLNode {
     const bal: number = this._getBalance(cur);
+    console.log (`${cur.data}: ${bal}`);
 
-    console.log("balance for " + cur.data + " " + bal);
-    // left left
-    if (bal > 1 && cur.left && val < cur.left.data) {
+    if (bal < -1) {
+      if (cur.right && this._getBalance(cur.right) > 0) {
+        cur.right = this.rightRotate(cur.right);
+      }
+      console.log("should be 3 " + cur.data);
+      return this.leftRotate(cur);
+    } else if (bal > 1) {
+      if (cur.left && this._getBalance(cur.left) < 0) {
+        cur.left = this.leftRotate(cur.left);
+      }
       return this.rightRotate(cur);
     }
 
-    // right right
-    if (bal < -1 && cur.right && val > cur.right.data) {
-      console.log("called");
-      return this.leftRotate(cur);
-    }
-
-    // left right
-    if (bal > 1 && cur.left && val > cur.left.data) {
-      cur.left = this.leftRotate(cur.right);
-      return this.rightRotate(cur);
-    }
-    
-    // right left
-    if (bal < -1 && cur.right && val < cur.right.data) {
-      cur.right = this.rightRotate(cur.right);
-      return this.leftRotate(cur);
-    }
+    return cur;
   }
 
   private _getBalance(cur: AVLNode): number {
     if (cur === null) {
       return 0;
     }
-    
-    let rh = cur.right ? cur.right.height : 0;
-    let lh = cur.left ? cur.left.height : 0;
+
+    let rh = cur.right ? cur.right.height + 1 : 0;
+    let lh = cur.left ? cur.left.height + 1: 0;
     return lh - rh;
   }
 
   private rightRotate(cur: AVLNode): AVLNode {
     // assign new root
-    console.log(cur);
     const newRoot = cur.left ? cur.left : null;
-    console.log(newRoot);
     const newLeft = newRoot.right ? newRoot.right : null;
-
-
 
     // rotate, cur becone the new 
     newRoot.right = cur;
     cur.left = newLeft;
 
     // update heights
-    this._setHeight(newRoot);
-    this._setHeight(cur);
+    newRoot.height = this._setHeight(newRoot);
+    cur.height = this._setHeight(cur);
 
     return newRoot;
   }
@@ -201,8 +195,8 @@ export class AVLTree {
     cur.right = newRight;
 
     // update heights
-    this._setHeight(newRoot);
-    this._setHeight(cur);
+    newRoot.height = this._setHeight(newRoot);
+    cur.height = this._setHeight(cur);
 
     return newRoot;
   }

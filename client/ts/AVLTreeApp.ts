@@ -78,7 +78,7 @@ class AVLDraw extends DrawCanvas {
   }
 
   private _widthOfInnerTree(cur: AVLNode, isLeft: boolean) {
-    let childTreeInnerWidth = 0;
+    let childTreeInnerWidth = 1;
 
     if (isLeft) {
       if (cur.left.right) {
