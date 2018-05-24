@@ -36,6 +36,7 @@ export default class FormInput {
     const form = document.getElementById('enter-form');
 
     // create html elements
+    const fieldset = document.createElement('fieldset');
     const button = document.createElement('button');
     const text = document.createTextNode(this.name);
 
@@ -47,13 +48,15 @@ export default class FormInput {
     button.appendChild(text);
 
     // bind to dom
-    form.appendChild(button);
+    form.appendChild(fieldset);
+    fieldset.appendChild(button);
   }
   public renderNumIn(): void {
     // get dom
     const form = document.getElementById('enter-form');
 
     // create html elements
+    const fieldset = document.createElement('fieldset');
     const input = document.createElement('input');
     const button = document.createElement('button');
     const text = document.createTextNode(this.name);
@@ -72,7 +75,8 @@ export default class FormInput {
     button.appendChild(text);
 
     // bind to dom
-    form.appendChild(input);
-    form.appendChild(button);
+    form.appendChild(fieldset);
+    fieldset.appendChild(input);
+    fieldset.appendChild(button);
   }
 }

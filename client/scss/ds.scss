@@ -1,4 +1,5 @@
 @import './_base';
+@import './form';
 
 body, html {
   color:white;
@@ -20,7 +21,7 @@ a {
 
 .container {
   display: grid;
-  grid-template-columns: 30% 20% auto;
+  grid-template-columns: 25% 20% auto;
   grid-template-rows: [row1-start] 60px [row1-end] auto [last];
   height: 100%;
 }
