@@ -26,6 +26,10 @@ app.get('/files/binary-tree', function (req, res) {
     var file = path.join(__dirname, '..', 'client', 'ts', 'ds', 'BinarySearchTree.ts');
     res.download(file);
 });
+app.get('/files/avl-tree', function (req, res) {
+    var file = path.join(__dirname, '..', 'client', 'ts', 'ds', 'AVLTree.ts');
+    res.download(file);
+});
 app.use(function (req, res) {
     res.type('text/plain');
     res.status(404);

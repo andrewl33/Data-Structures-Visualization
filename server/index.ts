@@ -34,10 +34,15 @@ app.get('/avl-tree', (req, res) => {
 app.get('/files/stack', (req, res) => {
   const file = path.join(__dirname, '..', 'client', 'ts', 'ds', 'Stack.ts');
   res.download(file);
-})
+});
 
 app.get('/files/binary-tree', (req, res) => {
   const file = path.join(__dirname, '..', 'client', 'ts', 'ds', 'BinarySearchTree.ts');
+  res.download(file);
+});
+
+app.get('/files/avl-tree', (req, res) => {
+  const file = path.join(__dirname, '..', 'client', 'ts', 'ds', 'AVLTree.ts');
   res.download(file);
 })
 
