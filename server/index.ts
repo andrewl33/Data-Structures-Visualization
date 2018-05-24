@@ -10,7 +10,7 @@ app.set('port', PORT);
 
 // serve static files
 app.use('/public', express.static(path.join(__dirname, '..', 'build')));
-// app.use('/files', express.static(path.join(__dirname, '..', 'client', 'ts', 'ds', 'adt-files')));
+app.use('/imgs', express.static(path.join(__dirname, '..', 'client', 'img')));
 
 
 // handle routes

@@ -6,6 +6,7 @@ var PORT = 37539;
 var app = express();
 app.set('port', PORT);
 app.use('/public', express.static(path.join(__dirname, '..', 'build')));
+app.use('/imgs', express.static(path.join(__dirname, '..', 'client', 'img')));
 app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname, '..', 'build', 'front-page.html'));
 });

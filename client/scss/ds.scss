@@ -14,12 +14,8 @@ a {
   }
 
   &:hover {
-    color: nav-select;
+    color: $nav-select;
   }
-}
-
-#nav-active {
-  color: $nav-select;
 }
 
 .container {

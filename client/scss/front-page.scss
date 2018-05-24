@@ -1,2 +1,45 @@
 @import './_base';
-@import './_nav';
+
+body {
+  background-color: $dark-grey;
+}
+
+h1 {
+  color: white;
+  text-align: center;
+}
+
+section {
+  padding: 30px;
+}
+
+header {
+  padding: 20px;
+}
+
+.main-nav {
+  display:flex;
+  justify-content: space-between;
+  a {
+    text-decoration: none;
+    padding: 20px;
+    &:link,
+    &:visited {
+      color: white;
+    }
+  
+    &:hover {
+      color: $nav-select;
+    }
+  }
+}
+
+.links {
+  display:flex;
+  justify-content: center;
+}
+
+.carousel {
+  background-color: $light-grey;
+}
+
