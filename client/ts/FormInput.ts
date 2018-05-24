@@ -66,6 +66,7 @@ export default class FormInput {
     input.type = 'text';
     input.name = this.name;
     input.id =  'form-' + this.name;
+    input.addEventListener('keydown', (e)=> {if (e.keyCode===13) {this.methodWrapper(e)}});
 
     // add button values
     button.classList.add('form-button');
