@@ -5,8 +5,8 @@ import { constants }  from './constants';
 
 class BSTDraw extends DrawCanvas {
   private bst: BinarySearchTree;
-  private r: number = 15;
-  private topOffset: number = 50;
+  private r: number = constants.radius;
+  private topOffset: number = constants.topOffset;
   private c: HTMLCanvasElement;
   private ctx: CanvasRenderingContext2D;
   private heightSpread: number = constants.heightFactor;

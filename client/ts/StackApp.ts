@@ -1,6 +1,7 @@
 import  DrawCanvas  from './DrawCanvas';
 import FormInput  from './FormInput';
 import Stack from './ds/Stack';
+import {constants} from './constants';
 
 class StackDraw extends DrawCanvas {
   private stack: Stack;
@@ -48,8 +49,8 @@ class StackDraw extends DrawCanvas {
 
   public draw(): void {
     // constant top
-    const topOffset = 50;
-    const radius = 15;
+    const topOffset = constants.topOffset;
+    const radius = constants.radius;
     const c = <HTMLCanvasElement>document.getElementById('draw');
     const ctx = c.getContext('2d');
     let dimensions;     // resonsive width
