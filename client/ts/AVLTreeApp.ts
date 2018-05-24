@@ -1,6 +1,7 @@
 import  DrawCanvas  from './DrawCanvas';
 import FormInput  from './FormInput';
 import {AVLNode, AVLTree} from './ds/AVLTree';
+import { constants }  from './constants';
 
 class AVLDraw extends DrawCanvas {
   private avl: AVLTree;
@@ -8,7 +9,7 @@ class AVLDraw extends DrawCanvas {
   private topOffset: number = 50;
   private c: HTMLCanvasElement;
   private ctx: CanvasRenderingContext2D;
-  private heightSpread: number = 2.5;
+  private heightSpread: number = constants.heightFactor;
 
   constructor() {
     super();
@@ -84,12 +85,12 @@ class AVLDraw extends DrawCanvas {
       if (cur.left.right) {
         childTreeInnerWidth = cur.left.right.rightWidth + cur.left.right.leftWidth + cur.left.right.height;
       }
-      return (cur.left.rightWidth + 1) * this.heightSpread + childTreeInnerWidth * this.heightSpread * 1.3;
+      return (cur.left.rightWidth + 1) * 1.5 * this.heightSpread + childTreeInnerWidth * this.heightSpread * cur.height * .5;
     } else {
       if (cur.right.left) {
         childTreeInnerWidth = cur.right.left.leftWidth + cur.right.left.rightWidth + cur.right.left.height;
       }
-      return (cur.right.leftWidth + 1) * this.heightSpread + childTreeInnerWidth * this.heightSpread * 1.3;
+      return (cur.right.leftWidth + 1) * 1.5 * this.heightSpread + childTreeInnerWidth * this.heightSpread * cur.height* .5;
     }
 
   }
