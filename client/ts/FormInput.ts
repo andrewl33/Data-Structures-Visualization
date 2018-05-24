@@ -41,6 +41,7 @@ export default class FormInput {
 
     // add button values
     button.classList.add('form-button');
+    button.classList.add('form-buttom-full');
     button.value = this.name;
     button.addEventListener('click', (e)=>this.methodWrapper(e));
     button.appendChild(text);
@@ -65,6 +66,7 @@ export default class FormInput {
 
     // add button values
     button.classList.add('form-button');
+    button.classList.add('form-button-half');
     button.value = this.name;
     button.addEventListener('click', (e)=>this.methodWrapper(e));
     button.appendChild(text);
