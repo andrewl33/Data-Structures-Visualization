@@ -23,26 +23,27 @@ export class BinarySearchTree {
   }
 
   private _setHeight(cur: BSTNode) {
-    let height = 0;
-
-    if (cur.left !== null) {
-      height = cur.left.height + 1;
+    let lh = 0;
+    let rh = 0;
+ 
+    if (cur.left) {
+      lh = cur.left.height + 1;
     } 
-    if (cur.right !== null) {
-      height = cur.right.height >= height ? cur.right.height + 1 : height;
+    if (cur.right) {
+      rh = cur.right.height + 1;
     }
 
-    cur.height = height;
+    cur.height = Math.max(lh, rh);
   }
 
   private _getMaxLeftWidth(cur: BSTNode): number {
     let left: number = 0;
     let right: number = 0;
 
-    if (cur.left !== null) {
+    if (cur.left) {
       left+= this._getMaxLeftWidth(cur.left) + 1;
     }
-    if (cur.right !== null) {
+    if (cur.right) {
       right+= this._getMaxLeftWidth(cur.right) - 1;
     }
 
@@ -53,10 +54,10 @@ export class BinarySearchTree {
     let left: number = 0;
     let right: number = 0;
 
-    if (cur.left !== null) {
+    if (cur.left) {
       left+= this._getMaxRightWidth(cur.left) - 1;
     }
-    if (cur.right !== null) {
+    if (cur.right) {
       right+= this._getMaxRightWidth(cur.right) + 1;
     }
 
@@ -93,12 +94,14 @@ export class BinarySearchTree {
     } else {
       current.left = this._removeLeftmost(current.left);
     }
+
+    return current;
   }
 
   private _removeBSTNode(current: BSTNode | null, val: number): BSTNode | null {
     if (current.data === val) {
       if (current.right === null)  {
-        return current.left;
+        current = current.left;
       } else {
         current.data = this._leftmost(current.right);
         current.right = this._removeLeftmost(current.right);
@@ -163,27 +166,4 @@ export class BinarySearchTree {
     this.root = null;
   }
 
-  // private _h(n: BSTNode): number {
-  //   let size = 0;
-  //   let left = 0;
-  //   let right = 0;
-
-  //   if (n.left === null && n.right === null) {
-  //     return size;
-  //   }
-  //   if (n.left) {
-  //     left = this._h(n.left);
-  //   }
-  //   if (n.right) {
-  //     right = this._h(n.right);
-  //   }
-
-  //   size = left > right ? left : right;
-
-  //   return size+1;
-  // }
-
-  public height(): number {
-    return this._h(this.root);
-  }
 }

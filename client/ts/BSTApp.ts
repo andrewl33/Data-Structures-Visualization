@@ -80,7 +80,7 @@ class BSTDraw extends DrawCanvas {
 
   private _widthOfInnerTree(cur: BSTNode, isLeft: boolean) {
     let childTreeInnerWidth = 0;
-    console.log(`${cur.data}: r:${cur.rightWidth} l:${cur.leftWidth}`)
+
     if (isLeft) {
       if (cur.left.right) {
         childTreeInnerWidth = cur.left.right.rightWidth + cur.left.right.leftWidth + cur.left.right.height;
