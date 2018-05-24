@@ -14,7 +14,7 @@ export default class FormInput {
   public methodWrapper(e: Event): void {
     e.preventDefault();
     // handle text value
-    const inputLocation: HTMLElement = document.getElementById('form-' + this.name));
+    const inputLocation: HTMLElement = document.getElementById('form-' + this.name);
     if (inputLocation != null) {
       const value: string = (<HTMLInputElement>inputLocation).value;
       // check if number 
