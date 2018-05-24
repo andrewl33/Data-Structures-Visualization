@@ -86,12 +86,12 @@ class BSTDraw extends DrawCanvas {
       if (cur.left.right) {
         childTreeInnerWidth = cur.left.right.rightWidth + cur.left.right.leftWidth + cur.left.right.height;
       }
-      return (cur.left.rightWidth + 1) * 1.5 * this.heightSpread + childTreeInnerWidth * this.heightSpread * cur.height * .5;
+      return (cur.left.rightWidth + 1) * 1.5 * this.heightSpread + childTreeInnerWidth * this.heightSpread * cur.height * .4;
     } else {
       if (cur.right.left) {
         childTreeInnerWidth = cur.right.left.leftWidth + cur.right.left.rightWidth + cur.right.left.height;
       }
-      return (cur.right.leftWidth + 1)* 1.5 * this.heightSpread + childTreeInnerWidth * this.heightSpread * cur.height * .5;
+      return (cur.right.leftWidth + 1)* 1.5 * this.heightSpread + childTreeInnerWidth * this.heightSpread * cur.height * .4;
     }
   }
 

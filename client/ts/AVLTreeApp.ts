@@ -85,12 +85,12 @@ class AVLDraw extends DrawCanvas {
       if (cur.left.right) {
         childTreeInnerWidth = cur.left.right.rightWidth + cur.left.right.leftWidth + cur.left.right.height;
       }
-      return (cur.left.rightWidth + 1) * 1.5 * this.heightSpread + childTreeInnerWidth * this.heightSpread * cur.height * .5;
+      return (cur.left.rightWidth + 1) * 1.5 * this.heightSpread + childTreeInnerWidth * this.heightSpread * cur.height * .4;
     } else {
       if (cur.right.left) {
         childTreeInnerWidth = cur.right.left.leftWidth + cur.right.left.rightWidth + cur.right.left.height;
       }
-      return (cur.right.leftWidth + 1) * 1.5 * this.heightSpread + childTreeInnerWidth * this.heightSpread * cur.height* .5;
+      return (cur.right.leftWidth + 1) * 1.5 * this.heightSpread + childTreeInnerWidth * this.heightSpread * cur.height* .4;
     }
 
   }
@@ -202,9 +202,7 @@ window.onload = () => {
   containsInput.renderNumIn();
   clearInput.renderBtn();
 
-
-  const list: number[] = [50,25,61,78,84,56,22,55,66,20,40,81,31,68,87,19,85,76,60,2,45,57,23];
-
+  const list: number[] = [52,87,55,46,31,91,2,10,34,1,15,45,30,90,9,48,36,32,14,43,28,79,22,74];
   list.forEach((item) => {
     avlDraw.avlAdd(item);
   });
