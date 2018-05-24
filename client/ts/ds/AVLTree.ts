@@ -112,6 +112,12 @@ export class AVLTree {
     } else {
       current.left = this._removeLeftmost(current.left);
     }
+    if (current) {
+      current.height = this._setHeight(current);
+      current = this._rebalance(current);
+      current.leftWidth = this._getMaxLeftWidth(current);
+      current.rightWidth = this._getMaxRightWidth(current);
+    } 
 
     return current;
   }
@@ -119,7 +125,7 @@ export class AVLTree {
   private _removeAVLNode(current: AVLNode | null, val: number): AVLNode | null {
     if (current.data === val) {
       if (current.right === null)  {
-        return current.left;
+        current = current.left;
       } else {
         current.data = this._leftmost(current.right);
         current.right = this._removeLeftmost(current.right);
@@ -133,7 +139,7 @@ export class AVLTree {
     }
 
     current.height = this._setHeight(current);
-    // this._rebalance(current, val);
+    current = this._rebalance(current);
     current.leftWidth = this._getMaxLeftWidth(current);
     current.rightWidth = this._getMaxRightWidth(current);
 
@@ -142,13 +148,12 @@ export class AVLTree {
 
   private _rebalance(cur: AVLNode): AVLNode {
     const bal: number = this._getBalance(cur);
-    console.log (`${cur.data}: ${bal}`);
 
     if (bal < -1) {
       if (cur.right && this._getBalance(cur.right) > 0) {
         cur.right = this.rightRotate(cur.right);
       }
-      console.log("should be 3 " + cur.data);
+
       return this.leftRotate(cur);
     } else if (bal > 1) {
       if (cur.left && this._getBalance(cur.left) < 0) {
