@@ -1,7 +1,7 @@
 import  DrawCanvas  from './DrawCanvas';
 import FormInput  from './FormInput';
 import Stack from './ds/Stack';
-import {constants} from './constants';
+import { constants } from './constants';
 
 class StackDraw extends DrawCanvas {
   private stack: Stack;
