@@ -10,6 +10,9 @@ export class BSTNode {
     this.data = data;
     this.left = null;
     this.right = null;
+    this.height = 0;
+    this.leftWidth = 0;
+    this.rightWidth = 0;
   }
 }
 
@@ -22,18 +25,18 @@ export class BinarySearchTree {
     this.BSTsize = 0;
   }
 
-  private _setHeight(cur: BSTNode) {
+  private _setHeight(cur: BSTNode): number {
     let lh = 0;
     let rh = 0;
- 
+
     if (cur.left) {
-      lh = cur.left.height + 1;
+      lh = this._setHeight(cur.left) + 1;
     } 
     if (cur.right) {
-      rh = cur.right.height + 1;
+      rh = this._setHeight(cur.right) + 1;
     }
 
-    cur.height = Math.max(lh, rh);
+    return Math.max(lh, rh);
   }
 
   private _getMaxLeftWidth(cur: BSTNode): number {
@@ -74,7 +77,7 @@ export class BinarySearchTree {
         current.right = this._add(current.right, val);
       }
     }
-    this._setHeight(current);
+    current.height = this._setHeight(current);
     current.leftWidth = this._getMaxLeftWidth(current);
     current.rightWidth = this._getMaxRightWidth(current);
     return current;
@@ -101,7 +104,7 @@ export class BinarySearchTree {
   private _removeBSTNode(current: BSTNode | null, val: number): BSTNode | null {
     if (current.data === val) {
       if (current.right === null)  {
-        current = current.left;
+        current = current.left ? current.left : null;
       } else {
         current.data = this._leftmost(current.right);
         current.right = this._removeLeftmost(current.right);
@@ -113,10 +116,11 @@ export class BinarySearchTree {
         current.right = this._removeBSTNode(current.right, val);
       }
     }
-
-    this._setHeight(current);
-    current.leftWidth = this._getMaxLeftWidth(current);
-    current.rightWidth = this._getMaxRightWidth(current);
+    if (current !== null) {
+      current.height = this._setHeight(current);
+      current.leftWidth = this._getMaxLeftWidth(current);
+      current.rightWidth = this._getMaxRightWidth(current);
+    }
 
     return current;
   }

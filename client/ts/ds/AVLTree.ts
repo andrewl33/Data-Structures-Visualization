@@ -125,7 +125,7 @@ export class AVLTree {
   private _removeAVLNode(current: AVLNode | null, val: number): AVLNode | null {
     if (current.data === val) {
       if (current.right === null)  {
-        current = current.left;
+        current = current.left ? current.left : null;
       } else {
         current.data = this._leftmost(current.right);
         current.right = this._removeLeftmost(current.right);
@@ -138,10 +138,12 @@ export class AVLTree {
       }
     }
 
-    current.height = this._setHeight(current);
-    current = this._rebalance(current);
-    current.leftWidth = this._getMaxLeftWidth(current);
-    current.rightWidth = this._getMaxRightWidth(current);
+    if (current !== null) {
+      current.height = this._setHeight(current);
+      current = this._rebalance(current);
+      current.leftWidth = this._getMaxLeftWidth(current);
+      current.rightWidth = this._getMaxRightWidth(current);  
+    }
 
     return current;
   }

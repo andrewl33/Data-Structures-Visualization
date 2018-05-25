@@ -1,3 +1,5 @@
+import { constants } from "./constants";
+
 export default abstract class DrawCanvas {
   private prevOpDOM: HTMLElement;
 
@@ -32,10 +34,10 @@ export default abstract class DrawCanvas {
     const h = window.innerHeight;
 
     // has to mirrior scss grid
-    (<HTMLElement>canvasElem.parentNode).style.width = (w - (w *.3)).toString();
+    (<HTMLElement>canvasElem.parentNode).style.width = (w - (w * constants.leftSidebarWidth)).toString();
     (<HTMLElement>canvasElem.parentNode).style.height = (h - 60).toString();
 
-    canvasElem.width = w - (w *.3);
+    canvasElem.width = w - (w * constants.leftSidebarWidth);
     canvasElem.height = h - 60 - ((h-60)*.05); // LOL
   }
 

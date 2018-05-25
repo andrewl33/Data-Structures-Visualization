@@ -23,6 +23,7 @@
     "build:server": "tsc --project server",
     "serve": "node server",
     "serve:school": "./node_modules/forever/bin/forever server",
+    "stop:school": "./node_modules/forever/bin/forever stop server.js",
     "dev": "concurrently -r --kill-others \"npm run watch\" \"npm run dev:server\"",
     "dev:server": "nodemon -w server",
     "watch": "concurrently -k \"npm run watch:server\" \"npm run watch:client\"",
