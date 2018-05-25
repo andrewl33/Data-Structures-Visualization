@@ -1,3 +1,8 @@
+/**
+ * BST
+ * Houses binary search tree methods, and methods to look at the width of the tree
+ */
+
 export class BSTNode {
   public data: number;
   public height: number;

@@ -1,3 +1,10 @@
+/**
+ * Form Input
+ * 
+ * Handles form inputs
+ * provides two methods to print to dom
+ */
+
 export default class FormInput {
   private name: string;
   private method: Function;
@@ -11,6 +18,7 @@ export default class FormInput {
     this.textInput = null;
   }
 
+  // wraps methods
   public methodWrapper(e: Event): void {
     e.preventDefault();
     // handle text value
@@ -31,6 +39,8 @@ export default class FormInput {
     }
 
   }
+
+  // called to render a button
   public renderBtn(): void {
     // get dom
     const form = document.getElementById('enter-form');

@@ -1,3 +1,10 @@
+/**
+ * AVL tree app
+ * 
+ * Uses draw() that draws the tree to canvas
+ * Entry point for avl-tree.html
+ */
+
 import DrawTreeCanvas from './DrawTreeCanvas';
 import FormInput  from './FormInput';
 import { AVLNode, AVLTree } from './ds/AVLTree';
@@ -17,8 +24,8 @@ class AVLDraw extends DrawTreeCanvas {
   }
 
   public draw(): void {
-    // constant top
-    let dimensions;     // resonsive width
+    // responsive width
+    let dimensions;
     this.setContainerSize(this.c);
     dimensions = this.containerSize(this.c);  
   
@@ -49,6 +56,8 @@ class AVLDraw extends DrawTreeCanvas {
     }
   }
 
+
+  // button handlers
   public avlAdd(data: number): void {
     if (this.avl.contains(data)) {
       this.appendPreviousOutputs('add failed, already contains value', data);
@@ -86,6 +95,7 @@ class AVLDraw extends DrawTreeCanvas {
 
 
 window.onload = () => {
+  // loads content in
   const avlDraw = new AVLDraw();
   const addInput = new FormInput('add', avlDraw.avlAdd, 'enter-form');
   const removeInput = new FormInput('remove', avlDraw.avlRemove, 'enter-form');
@@ -98,10 +108,10 @@ window.onload = () => {
   containsInput.renderNumIn();
   clearInput.renderBtn();
 
+
+  // default fill
   const list: number[] = [52,87,55,46,31,91,2,10,34,1,15,45,30,90,9,48,36,32,14,43,28,79,22,74];
   list.forEach((item) => {
     avlDraw.avlAdd(item);
   });
-    
-
 }

@@ -1,3 +1,8 @@
+/**
+ * AVL Tree
+ * Houses avl tree methods, and methods to look at the width of the tree
+ */
+
 export class AVLNode {
   public data: number;
   public height: number;

@@ -1,3 +1,9 @@
+/**
+ * Stack App
+ * 
+ * Extends Draw canvas to draw a stack to screen
+ */
+
 import  DrawCanvas  from './DrawCanvas';
 import FormInput  from './FormInput';
 import Stack from './ds/Stack';
@@ -77,6 +83,7 @@ class StackDraw extends DrawCanvas {
     }
   }
 
+  // creates a list to print
   private constructStackList(): void {
 
     // clear list
@@ -93,7 +100,7 @@ class StackDraw extends DrawCanvas {
     }
   }
 
-
+  // bind methods
   public stackPush(data: number): void {
     this.stack.push(data);
     this.constructStackList();
@@ -123,6 +130,7 @@ class StackDraw extends DrawCanvas {
 
 
 window.onload = () => {
+  // bind dom objects
   const stackDraw = new StackDraw();
   const pushInput = new FormInput('push', stackDraw.stackPush, 'enter-form');
   const popInput = new FormInput('pop', stackDraw.stackPop, 'enter-form');
@@ -135,7 +143,6 @@ window.onload = () => {
 
 
   // fill initially
-
   for (let i = 0; i < 21; i++) {
     stackDraw.stackPush(i);
   }

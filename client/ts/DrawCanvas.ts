@@ -1,3 +1,10 @@
+/**
+ * Draw canvas
+ * 
+ * Base class for all apps
+ * It handles canvas resize, and clearing of the DOM
+ * Provides draw(), and abstract method that the user has to implement
+ */
 import { constants } from "./constants";
 
 export default abstract class DrawCanvas {

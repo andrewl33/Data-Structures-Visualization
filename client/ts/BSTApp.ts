@@ -1,3 +1,10 @@
+/**
+ *\ BSTree app
+ * 
+ * Uses draw() that draws the tree to canvas
+ * Entry point for binary-tree.html
+ */
+
 import DrawTreeCanvas from './DrawTreeCanvas';
 import FormInput  from './FormInput';
 import {BSTNode, BinarySearchTree} from './ds/BinarySearchTree';
@@ -16,8 +23,8 @@ class BSTDraw extends DrawTreeCanvas {
   }
 
   public draw(): void {
-    // constant top
-    let dimensions;     // resonsive width
+    // resonsive width
+    let dimensions;     
     this.setContainerSize(this.c);
     dimensions = this.containerSize(this.c);  
   
@@ -48,6 +55,7 @@ class BSTDraw extends DrawTreeCanvas {
     }
   }
 
+  // button handlers
   public bstAdd(data: number): void {
     if (this.bst.contains(data)) {
       this.appendPreviousOutputs('add failed, already contains value', data);
@@ -85,6 +93,7 @@ class BSTDraw extends DrawTreeCanvas {
 
 
 window.onload = () => {
+  // loads content in
   const bstDraw = new BSTDraw();
   const addInput = new FormInput('add', bstDraw.bstAdd, 'enter-form');
   const removeInput = new FormInput('remove', bstDraw.bstRemove, 'enter-form');
@@ -98,10 +107,10 @@ window.onload = () => {
   clearInput.renderBtn();
 
 
+  // default fill
   const list: number[] = [50,25,61,78,84,56,22,55,66,20,40,81,31,68,87,19,85,76,60,2,45,57,23];
 
   list.forEach((item) => {
     bstDraw.bstAdd(item);
   });
-  
 }

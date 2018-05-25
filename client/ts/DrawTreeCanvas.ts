@@ -1,3 +1,10 @@
+/**
+ * Draw Tree canvas
+ * 
+ * Base class for tree apps, extends DrawCanvas
+ * Handles drawing the nodes, lines, and calculations of the child coordinates.
+ */
+
 import { BSTNode } from './ds/BinarySearchTree';
 import { AVLNode } from './ds/AVLTree';
 import DrawCanvas from './DrawCanvas';
@@ -5,6 +12,7 @@ import { constants } from './constants';
 
 export default abstract class DrawTreeCanvas extends DrawCanvas {
 
+  // defining contants to make them easier to use
   public r: number = constants.radius;
   public topOffset: number = constants.topOffset;
   protected c: HTMLCanvasElement;
@@ -14,14 +22,15 @@ export default abstract class DrawTreeCanvas extends DrawCanvas {
   constructor() {
     super();
 
+    // get canvas
     this.c = <HTMLCanvasElement>document.getElementById('draw');
     this.ctx = this.c.getContext('2d');
   }
 
   protected drawNode(data: number, x: number, y: number): void {
-    // draw circle
     const ctx: CanvasRenderingContext2D = this.ctx;
-  
+    
+    // draw circle
     ctx.beginPath();
     ctx.lineWidth = 7;
     ctx.strokeStyle = 'white';
@@ -30,6 +39,7 @@ export default abstract class DrawTreeCanvas extends DrawCanvas {
     ctx.fillStyle = 'black';
     ctx.fill();
     ctx.closePath();
+
     // draw text
     ctx.fillStyle = "white";
     ctx.font = '14px Arial';
@@ -42,7 +52,8 @@ export default abstract class DrawTreeCanvas extends DrawCanvas {
   // EVENTUALLY DRAW ARROW
   protected drawLine(x1: number, y1: number, x2: number, y2: number): void {
     const ctx: CanvasRenderingContext2D = this.ctx;
-  
+    
+    // draw line
     ctx.beginPath();
     ctx.strokeStyle = 'black';
     ctx.lineWidth = 7;
@@ -53,6 +64,8 @@ export default abstract class DrawTreeCanvas extends DrawCanvas {
     ctx.closePath();
   }
   
+
+  // used to calculate the child tree node coordinates on the canvas
   protected _childCoord(x: number, y: number, isLeft: boolean, leftH: number, rightH: number): number[] {
     let xLineStart;
     let xLineEnd;
@@ -71,6 +84,8 @@ export default abstract class DrawTreeCanvas extends DrawCanvas {
     return [xLineStart, yLineStart, xLineEnd, yLineEnd, xNodePt, yNodePt];
   }
   
+  // finds the width of the inner tree, the left right left or right left right
+  // used guess and and width/height of the tree
   protected _widthOfInnerTree(cur: AVLNode | BSTNode, isLeft: boolean) {
     let childTreeInnerWidth = 1;
   
@@ -88,6 +103,7 @@ export default abstract class DrawTreeCanvas extends DrawCanvas {
   
   }
   
+  // recursively draws
   protected _drawChildNode(cur: AVLNode | BSTNode, curStartX: number, curStartY: number, isLeftSubTree: boolean) {
   
     this.drawNode(cur.data, curStartX, curStartY);

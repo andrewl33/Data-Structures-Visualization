@@ -1,4 +1,7 @@
-// using numbers only to keep it simple
+/**
+ * Stack
+ * Stack implementation using a singly-linked list
+ */
 class SNode {
   public data: number;
   public next: SNode; 

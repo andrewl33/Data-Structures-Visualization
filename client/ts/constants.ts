@@ -1,3 +1,7 @@
+/**
+ * Constants
+ */
+
 export const constants = {
   heightFactor: 1.3,
   radius: 15,
