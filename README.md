@@ -10,6 +10,8 @@ Simple website that features the stack, binary tree, and avl tree. Only works on
 
 Run `npm run build` and `npm run serve` to serve at `http://localhost:37539`.
 
+For windows, there is an error where parcel hangs when building. To fix, run `npm run dev` like 3 times.
+
 ### Development/Watch
 
 Run `npm run dev`
