@@ -62,3 +62,6 @@ build/**
 
 #parcel files
 .cache/**
+
+#server index.js
+server/index.js
