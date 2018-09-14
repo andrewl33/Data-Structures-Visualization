@@ -1,6 +1,6 @@
 # Data Structures Visualizations
 
-View at [Data Sturctures Visualizations](138.68.4.225)
+View at [Data Structures Visualizations](http://138.68.4.225)
 
 Simple website that features the stack, binary tree, and avl tree. Only works on very very very small data sets. Used for CS 290, web development at OSU.
 
