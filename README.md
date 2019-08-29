@@ -6,7 +6,8 @@ Simple website that features the stack, binary tree, and avl tree. Only works on
 
 ## Running
 
-[Parcel](https://github.com/parcel-bundler/parcel) and typescript have to be installed. 
+Node@12.9.0, npm@6.11.2,
+[Parcel](https://github.com/parcel-bundler/parcel)@1.12.3 and typescript have to be installed.
 
 ### Build
 
@@ -18,4 +19,4 @@ For windows, there is an error where parcel hangs when building. To fix, run `np
 
 Run `npm run dev`
 
-Note: Will not listen to child `scss` file on windows. 
+Note: Will not listen to child `scss` files on windows.

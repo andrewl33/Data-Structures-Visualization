@@ -65,3 +65,6 @@ build/**
 
 #server index.js
 server/index.js
+
+#dist
+dist/*
